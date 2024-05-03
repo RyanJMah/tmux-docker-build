@@ -21,5 +21,6 @@ WORKDIR /root
 ADD common/generic_tmux_install.sh .
 ADD vars.sh .
 
-ENTRYPOINT ["bash", "generic_tmux_install.sh"]
+RUN bash generic_tmux_install.sh
 
+CMD ["sleep", "infinity"]

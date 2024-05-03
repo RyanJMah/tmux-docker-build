@@ -76,7 +76,8 @@ fi
 ##############################################################################
 # Build the Docker image
 docker buildx build             \
-	-f $OS_DIR/Dockerfile \
+	-f $OS_DIR/Dockerfile       \
+    --progress plain            \
 	--platform $PLATFORM        \
 	--load                      \
 	-t $IMAGE_NAME .
@@ -92,27 +93,27 @@ docker run                  \
 	$IMAGE_NAME
 ##############################################################################
 
-##############################################################################
-# Start following logs in the background
-docker logs -f $CONTAINER_NAME &
-LOGS_PID=$!
+# ##############################################################################
+# # Start following logs in the background
+# docker logs -f $CONTAINER_NAME &
+# LOGS_PID=$!
 
-# Poll until the tarball is created
-set +e
-while true;
-do
-	docker exec $CONTAINER_NAME ls $INSTALL_DIR/tmux.tar.gz > /dev/null 2>&1
-	if [[ $? -eq 0 ]]; then
-		break
-	fi
-	sleep 1
-done
-set -e
+# # Poll until the tarball is created
+# set +e
+# while true;
+# do
+# 	docker exec $CONTAINER_NAME ls $INSTALL_DIR/tmux.tar.gz > /dev/null 2>&1
+# 	if [[ $? -eq 0 ]]; then
+# 		break
+# 	fi
+# 	sleep 1
+# done
+# set -e
 
-# Kill the logs process
-kill $LOGS_PID
-echo "Build complete."
-##############################################################################
+# # Kill the logs process
+# kill $LOGS_PID
+# echo "Build complete."
+# ##############################################################################
 
 ##############################################################################
 # Copy the tarball from the container

@@ -47,8 +47,3 @@ cd ../
 # Create the tarball
 tar -czf tmux.tar.gz ./"${INSTALL_DIR##*/}"
 mv tmux.tar.gz $INSTALL_DIR
-
-# Wait until the container is killed
-while true; do
-    sleep 2
-done
