@@ -8,6 +8,7 @@ RUN yum install -y  \
     ncurses-devel   \
     gcc             \
     gcc-c++         \
+    make            \
     bison           \
     pkgconfig       \
     openssl-devel

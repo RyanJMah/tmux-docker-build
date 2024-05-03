@@ -1,5 +1,7 @@
 # Runs on the docker container
 
+set -e
+
 source vars.sh
 
 mkdir -p $INSTALL_DIR
@@ -40,12 +42,10 @@ cd tmux-*/
 PKG_CONFIG_PATH=$INSTALL_DIR/lib/pkgconfig ./configure --prefix=$INSTALL_DIR
 make -j && make install
 
-# Test the installation
-$INSTALL_DIR/bin/tmux -V
+cd ../
 
 # Create the tarball
-tar -czf tmux.tar.gz $INSTALL_DIR
-
+tar -czf tmux.tar.gz ./"${INSTALL_DIR##*/}"
 mv tmux.tar.gz $INSTALL_DIR
 
 # Wait until the container is killed
