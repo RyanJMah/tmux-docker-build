@@ -44,7 +44,7 @@ make -j && make install
 $INSTALL_DIR/bin/tmux -V
 
 # Create the tarball
-tar -czvf tmux.tar.gz $INSTALL_DIR
+tar -czf tmux.tar.gz $INSTALL_DIR
 
 mv tmux.tar.gz $INSTALL_DIR
 
